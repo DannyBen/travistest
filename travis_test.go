@@ -7,7 +7,7 @@ import (
 )
 
 func Example() {
-	handler := travistest.Handler{"./cache", 1}
+	handler := travistest.Handler{}
 	data := []byte("HELLO")
 	key := "key"
 	err := handler.Set(key, data)
