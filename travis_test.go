@@ -10,13 +10,18 @@ func Example() {
 	handler := travistest.Handler{"./cache", 1}
 	data := []byte("HELLO")
 	key := "key"
-	handler.Set(key, data)
+	err := handler.Set(key, data)
+	if err != nil {
+		fmt.Println("05 ERR >", err.Error())
+	} else {
+		fmt.Println("05 OK  > SET SUCCESS")
+	}
 
 	exists, err := travistest.Exists(handler.Filename(key))
 	if err != nil {
 		fmt.Println("10 ERR >", err.Error())
 	} else {
-		fmt.Println("10 OK  >")
+		fmt.Println("10 OK  > EXISTS")
 	}
 
 	// r := handler.Get(key)
