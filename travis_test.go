@@ -17,13 +17,13 @@ func Example() {
 
 	yes, err := travistest.Exists(handler.Filename(key))
 	if err != nil {
-		panic(err)
+		fmt.Println("60 ERR>", err.Error())
 	}
 	if yes {
 		fmt.Println("20 ---> EXISTS")
 		fi, err := os.Stat(handler.Filename(key))
 		if err != nil {
-			panic(err)
+			fmt.Println("50 ERR>", err.Error())
 		}
 		fmt.Println("30 --->", fi.Mode())
 	} else {
