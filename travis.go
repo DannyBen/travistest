@@ -18,7 +18,7 @@ type Handler struct {
 
 // Set saves content to the cache
 func (h Handler) Set(key string, data []byte) error {
-	return ioutil.WriteFile(h.Filename(key), data, 0600)
+	return ioutil.WriteFile(h.Filename(key), data, 0666)
 }
 
 // Get returns content from the cache
@@ -55,7 +55,7 @@ func (h Handler) dir() string {
 	yes, err := Exists(h.Dir)
 	panicon(err)
 	if !yes {
-		err := os.MkdirAll(h.Dir, 0600)
+		err := os.MkdirAll(h.Dir, 0666)
 		panicon(err)
 	}
 	return h.Dir

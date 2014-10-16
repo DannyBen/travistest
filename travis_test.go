@@ -11,23 +11,27 @@ func Example() {
 	data := []byte("HELLO")
 	key := "key"
 	handler.Set(key, data)
-	r := handler.Get(key)
-	fmt.Println("10 --->", string(r))
+
+	exists, err := travistest.Exists(handler.Filename(key))
+	if err != nil {
+		fmt.Println("10 ERR >", err.Error())
+	} else {
+		fmt.Println("10 OK  >")
+	}
+
+	// r := handler.Get(key)
+	// fmt.Println("10 --->", string(r))
 	// fmt.Println(travistest.Exists(handler.Filename(key)))
 
-	yes, err := travistest.Exists(handler.Filename(key))
-	if err != nil {
-		fmt.Println("60 ERR>", err.Error())
-	}
-	if yes {
-		fmt.Println("20 ---> EXISTS")
+	if exists {
 		fi, err := os.Stat(handler.Filename(key))
 		if err != nil {
-			fmt.Println("50 ERR>", err.Error())
+			fmt.Println("20 ERR >", err.Error())
+		} else {
+			fmt.Println("20 OK  >", fi.Mode())
 		}
-		fmt.Println("30 --->", fi.Mode())
 	} else {
-		fmt.Println("40 ---> DOES NOT EXIST")
+		fmt.Println("25 ERR > DOES NOT EXIST")
 	}
 
 	// file := "./travis.go"
@@ -38,5 +42,5 @@ func Example() {
 	// fmt.Println("2 --->", fi.Mode())
 
 	// Output:
-	// ------> RESULT
+	// ------ > RESULT
 }
