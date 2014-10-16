@@ -7,7 +7,7 @@ import (
 
 func Example() {
 	// Get a handler and set a directory + 1 hour cache life
-	handler := filecache.Handler{}
+	handler := filecache.Handler{Life: 1}
 
 	// Data to store in cache
 	data := []byte("Joey doesn't share food")
