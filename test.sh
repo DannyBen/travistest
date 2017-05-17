@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 echo 'Running'
-exit 1
+exit 0
