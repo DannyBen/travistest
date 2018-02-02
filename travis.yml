@@ -1,0 +1,14 @@
+language: ruby
+
+os: 
+  - windows
+  - linux
+
+rvm:
+  - "2.0.0"
+  - "2.5.0"
+
+notifications:
+  email: false
+
+script: ruby -v
