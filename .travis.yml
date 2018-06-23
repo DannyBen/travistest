@@ -11,7 +11,7 @@ before_install:
 - sudo apt-get install python3.6 -y
 
 install:
-- pip install codenamize
+- pip3 install codenamize
 
 script: 
 - ruby -v
