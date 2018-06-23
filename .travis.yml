@@ -10,10 +10,11 @@ before_install:
 - sudo apt-get update
 - sudo apt-get install python3 -y
 
-install:
-- pip3 install codenamize
+# install:
+# - pip3 install codenamize
 
 script: 
 - ruby -v
 - python -v
-- codenamize -v
+- pip -v
+# - codenamize -v
