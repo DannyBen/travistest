@@ -1,14 +1,19 @@
 language: ruby
 
-os: 
-  - windows
-  - linux
+notifications:
+  email: false
 
 rvm:
   - "2.0.0"
   - "2.5.0"
 
-notifications:
-  email: false
+python:
+  - 3.5
 
-script: ruby -v
+install:
+  - pip instal lcodenamize
+
+script: 
+  - ruby -v
+  - python -v
+  - codenamize -v
