@@ -6,11 +6,11 @@ notifications:
 rvm:
 - "2.5.0"
 
-before_install: 
-- source ~/virtualenv/python3.6/bin/activate
+# before_install: 
+# - source ~/virtualenv/python3.6/bin/activate
 
 install:
-- pip3 install codenamize
+- pip3 install --user codenamize
 
 script: 
-- ruby test.rb
+- codenamize --version
