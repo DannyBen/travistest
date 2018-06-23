@@ -4,16 +4,16 @@ notifications:
   email: false
 
 rvm:
-  - "2.0.0"
-  - "2.5.0"
+- "2.5.0"
 
-python:
-  - 3.5
+before_install:
+- sudo apt-get update
+- sudo apt-get install python3.6 -y
 
 install:
-  - pip install codenamize
+- pip install codenamize
 
 script: 
-  - ruby -v
-  - python -v
-  - codenamize -v
+- ruby -v
+- python -v
+- codenamize -v
