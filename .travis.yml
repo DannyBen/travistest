@@ -6,28 +6,12 @@ notifications:
 rvm:
 - "2.5.0"
 
-python:
-- "3.5"
-
-# before_install:
-# - sudo apt-get update
-# - sudo apt-get install python3 -y
-
-addons:
-  apt:
-    sources:
-    - deadsnakes
-    packages:
-    - python3.5
-
 before_install: 
-- source ~/virtualenv/python3.6/bin/activate
+- source $VIRTUAL_ENV/bin/activate
 
 install:
 - pip3 install codenamize
 
 script: 
-- ls -la ~/virtualenv
-# - env
-# - ruby test.rb
-# - codenamize --version
+- env |grep VIRTUAL
+- ruby test.rb
