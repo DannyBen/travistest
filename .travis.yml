@@ -6,15 +6,20 @@ notifications:
 rvm:
 - "2.5.0"
 
-before_install:
-- sudo apt-get update
-- sudo apt-get install python3 -y
+# before_install:
+# - sudo apt-get update
+# - sudo apt-get install python3 -y
+
+addons:
+  apt:
+    sources:
+    - deadsnakes
+    packages:
+    - python3.4
+
 
 # install:
 # - pip3 install codenamize
 
 script: 
-- ruby -v
-- python -v
-- pip -v
-# - codenamize -v
+- ruby test.rb
