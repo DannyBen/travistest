@@ -22,10 +22,10 @@ rvm:
 before_install: 
 - source ~/virtualenv/python3.6/bin/activate
 
-
-# install:
-# - pip3 install codenamize
+install:
+- pip3 install codenamize
 
 script: 
 - ls ~/virtualenv
 - ruby test.rb
+- codenamize --version
