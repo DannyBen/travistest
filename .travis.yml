@@ -1,6 +1,11 @@
 os:
 - osx
-- 
-language: generic
+- linux
+
+language: crystal
+
+before_script:
+- crystal build hello.cr --release
+
 script: 
 - ./hello
