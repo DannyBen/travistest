@@ -1,16 +1,4 @@
-language: ruby
-
-notifications:
-  email: false
-
-rvm:
-- "2.5.0"
-
-# before_install: 
-# - source ~/virtualenv/python3.6/bin/activate
-
-install:
-- pip3 install --user codenamize
-
+os: osx
+language: generic
 script: 
-- codenamize --version
+- ./hello
