@@ -4,12 +4,11 @@ os:
 language: crystal
 
 script:
-- crystal build hello.cr -o hello-linux
+- crystal build hello.cr -o hello-$TRAVIS_OS_NAME
 
 deploy:
   provider: releases
-  api_key:
-    secure: of81J/do2kMEKdFFgsLHcl1a/wPoQKFu1wtoZTmzEbd7iEjKwIkhPqgC8aMr4KAAy3d75iQ1dstsiKAcw/f9wqXzrk0A/pFytayTDUIZiPHYuMEpPHxIDUMedbqM8dH0f1+JXs4HybVKalioGlP66QQ6MbbsIoIcv91sVyRL4uQ=
+  api_key: $GITHUB_ACCESS_TOKEN
 
   file:
   - hello-linux
