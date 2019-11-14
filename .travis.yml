@@ -1,21 +1,45 @@
-os:
-- linux
-- osx
+# os:
+# - linux
+# - osx
 
 language: crystal
 
-script:
-- crystal build hello.cr --release --static -o hello-$TRAVIS_OS_NAME
+# script:
+# - crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
 
-deploy:
-  provider: releases
-  api_key: $GITHUB_ACCESS_TOKEN
-  skip_cleanup: true
-  draft: true
+# deploy:
+#   provider: releases
+#   api_key: $GITHUB_ACCESS_TOKEN
+#   skip_cleanup: true
+#   draft: true
 
-  file:
-  - hello-linux
-  - hello-osx
+#   file:
+#   - hello-linux
+#   - hello-osx
 
-  on:
-    repo: DannyBen/travistest
+#   on:
+#     repo: DannyBen/travistest
+
+jobs:
+  include:
+  - stage: test
+    script: echo test script comes here
+
+  - stage: build
+    os: linux
+    script: crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
+
+  - stage: deploy
+    name: "Deploy to GitHub Releases"
+    deploy:
+      provider: releases
+      api_key: $GITHUB_ACCESS_TOKEN
+      skip_cleanup: true
+      draft: true
+
+      file:
+      - hello-linux
+      - hello-osx
+
+      on:
+        repo: DannyBen/travistest
