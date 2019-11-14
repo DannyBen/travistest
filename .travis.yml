@@ -1,4 +1,15 @@
-os: osx
-language: generic
-script: 
-- ./hello
+os:
+- linux
+
+language: crystal
+
+script:
+- crystal build hello.cr
+
+deploy:
+  provider: releases
+  api_key:
+    secure: of81J/do2kMEKdFFgsLHcl1a/wPoQKFu1wtoZTmzEbd7iEjKwIkhPqgC8aMr4KAAy3d75iQ1dstsiKAcw/f9wqXzrk0A/pFytayTDUIZiPHYuMEpPHxIDUMedbqM8dH0f1+JXs4HybVKalioGlP66QQ6MbbsIoIcv91sVyRL4uQ=
+  file: hello
+  on:
+    repo: DannyBen/travistest
