@@ -8,6 +8,7 @@ script:
 # - crystal tool format --check
 
 # ==> Build binary based on Travis OS (osx / linux)
+- gcc -dumpmachine
 - crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
 
 # ==> Additionally, build an alpine binary using external docker
