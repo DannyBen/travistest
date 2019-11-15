@@ -8,7 +8,13 @@ notifications:
   email: false
 
 script:
+# - crystal spec
+# - crystal tool format --check
 - crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
+# - |
+#   if [ "$TRAVIS_OS_NAME" = "linux" ]
+#     echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine
+#   fi
 
 deploy:
   provider: releases
@@ -22,3 +28,4 @@ deploy:
 
   on:
     repo: DannyBen/travistest
+    tags: true
