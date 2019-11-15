@@ -1,21 +1,22 @@
-os:
-- linux
-- osx
-
+os: [linux, osx]
 language: crystal
-
-notifications:
-  email: false
+notifications: { email: false }
 
 script:
+# ==> Testing steps
 # - crystal spec
 # - crystal tool format --check
-- crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
-# - |
-#   if [ "$TRAVIS_OS_NAME" = "linux" ]
-#     echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine
-#   fi
 
+# ==> Build binary based on Travis OS (osx / linux)
+- crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME-$(gcc -dumpmachine)
+
+# ==> Additionally, build an alpine binary using external docker
+- |
+  if [ "$TRAVIS_OS_NAME" = "linux" ]
+    echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine-$(gcc -dumpmachine)
+  fi
+
+# ==> Push everything to the GitHub tag release
 deploy:
   provider: releases
   api_key: $GITHUB_ACCESS_TOKEN
@@ -24,6 +25,7 @@ deploy:
 
   file:
   - hello-linux
+  - hello-alpine
   - hello-osx
 
   on:
