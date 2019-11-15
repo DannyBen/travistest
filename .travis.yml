@@ -11,9 +11,9 @@ script:
 - crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME-$(gcc -dumpmachine)
 
 # ==> Additionally, build an alpine binary using external docker
-- |
-  if [ "$TRAVIS_OS_NAME" = "linux" ]
-    echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine-$(gcc -dumpmachine)
+- >-
+  if [ "$TRAVIS_OS_NAME" = "linux" ];
+    echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine-$(gcc -dumpmachine);
   fi
 
 # ==> Push everything to the GitHub tag release
