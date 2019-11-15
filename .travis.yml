@@ -8,12 +8,12 @@ script:
 # - crystal tool format --check
 
 # ==> Build binary based on Travis OS (osx / linux)
-- crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME-$(gcc -dumpmachine)
+- crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
 
 # ==> Additionally, build an alpine binary using external docker
 - >-
   if [ "$TRAVIS_OS_NAME" = "linux" ];
-    echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine-$(gcc -dumpmachine);
+    echo docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine
   fi
 
 # ==> Push everything to the GitHub tag release
