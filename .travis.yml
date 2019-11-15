@@ -12,8 +12,8 @@ script:
 
 # ==> Additionally, build an alpine binary using external docker
 - >-
-  if [ "$TRAVIS_OS_NAME" = "linux" ];
-    then docker run --rm -it -v $PWD:/app dannyben/crystal build --release -o hello-alpine;
+  if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    docker run --rm -it -v $PWD:/app dannyben/crystal build --static --release -o hello-alpine hello.cr
   fi
 
 # ==> Push everything to the GitHub tag release
