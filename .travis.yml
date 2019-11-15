@@ -24,6 +24,11 @@ deploy:
   overwrite: true
   # draft: true
 
+  # Notes:
+  # - Each of the OS builds (linux/osx) will only have the files they built
+  # - The missing files will be ignored without triggering an error
+  # - All files will be ppushed to the same release thanks to the fact we 
+  #   are deploying on tagged commits only
   file:
   - hello-linux
   - hello-alpine
