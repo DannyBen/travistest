@@ -14,6 +14,7 @@ script:
 # ==> Additionally, build an alpine binary using external docker
 - >-
   if [ "$TRAVIS_OS_NAME" = "linux" ]; then
+    gcc -dumpmachine
     docker run --rm -it -v $PWD:/app dannyben/crystal build --static --release -o hello-alpine hello.cr
   fi
 
