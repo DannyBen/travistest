@@ -18,4 +18,4 @@ before_install:
 - gem install bundler
 
 script:
-- echo "success"
+- ruby test.rb
