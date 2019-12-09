@@ -1,41 +1,21 @@
-os: [linux, osx]
-language: crystal
-notifications: { email: false }
+language: ruby
+
+cache: bundler
+
+rvm:
+- "2.3"
+- "2.4"
+- "2.5"
+- "2.6"
+- "2.7"
+
+# addons:
+#   apt:
+#     packages:
+#     - graphviz
+
+before_install:
+- gem install bundler
 
 script:
-# ==> Testing steps
-# - crystal spec
-# - crystal tool format --check
-
-# ==> Build binary based on Travis OS (osx / linux)
-- gcc -dumpmachine
-- crystal build hello.cr --release -o hello-$TRAVIS_OS_NAME
-
-# ==> Additionally, build an alpine binary using external docker
-- >-
-  if [ "$TRAVIS_OS_NAME" = "linux" ]; then
-    gcc -dumpmachine
-    docker run --rm -it -v $PWD:/app dannyben/crystal build --static --release -o hello-alpine hello.cr
-  fi
-
-# ==> Push everything to the GitHub tag release
-deploy:
-  provider: releases
-  api_key: $GITHUB_ACCESS_TOKEN
-  skip_cleanup: true
-  overwrite: true
-  # draft: true
-
-  # Notes:
-  # - Each of the OS builds (linux/osx) will only have the files they built
-  # - The missing files will be ignored without triggering an error
-  # - All files will be ppushed to the same release thanks to the fact we 
-  #   are deploying on tagged commits only
-  file:
-  - hello-linux
-  - hello-alpine
-  - hello-osx
-
-  on:
-    repo: DannyBen/travistest
-    tags: true
+- echo "success"
